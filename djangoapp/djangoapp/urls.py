@@ -22,6 +22,5 @@ from main import views
 urlpatterns = [
     path("admin", admin.site.urls),
     path("base", include("main.urls")),
-    path("db_table", views.show_from_db),
-    path("test", views.db_test),
+    path("discounts", views.show_from_db),
 ]
