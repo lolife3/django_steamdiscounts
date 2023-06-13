@@ -10,9 +10,10 @@ def base(request):
 
 def show_from_db(request):
     data = Discounts.objects.all()
-    return render(request, "new_table.html", {"data": data})
+    return render(request, "discounts.html", {"data": data})
 
 def db_test(request):
-    template = loader.get_template("new_table.html")
+    #test func
+    template = loader.get_template("discounts.html")
     return HttpResponse(template.render({"data": Discounts.objects.all()}))
     
