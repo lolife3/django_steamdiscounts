@@ -5,12 +5,6 @@ from .models import Discounts
 from .forms import SearchForm
 
 
-
-def base(request):
-    template = loader.get_template("base.html")
-    return HttpResponse(template.render())
-
-
 def show_from_db(request):
     context = {
         "form": SearchForm(),
