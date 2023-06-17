@@ -12,15 +12,18 @@ def base(request):
 
 
 def show_from_db(request):
-    data = Discounts.objects.all()
-    return render(request, "discounts.html", {"data": data})
-
-def get_titles(request):
+    context = {
+        "form": SearchForm(),
+        "data": None
+    }
     if request.method == "POST":
         form = SearchForm(request.POST)
         if form.is_valid():
-            ...
-    
+            context["data"] = Discounts.objects.filter(title__icontains=request.POST["searched_titles"])
+            return render(request, "discounts.html", context)
+    else:
+        context["data"] = Discounts.objects.all()
+        return render(request, "discounts.html", context)
 
 '''
 def db_test(request):
