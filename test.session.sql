@@ -1,1 +1,1 @@
-SELECT * FROM django_admin_log;
+RENAME TABLE `new_table` TO `main_discounts`;

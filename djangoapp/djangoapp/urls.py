@@ -31,8 +31,8 @@ router.register(r'groups', GroupViewSet, basename="groups")
 
 urlpatterns = [
     path("admin", admin.site.urls),
-    path("", show_from_db, name='discounts'),
-    path("search", show_from_db, name="search"),
+    path("discounts", show_from_db, name='discounts'),
+    path("discounts/search", show_from_db, name="search"),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

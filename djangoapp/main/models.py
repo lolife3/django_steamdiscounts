@@ -9,6 +9,3 @@ class Discounts(models.Model):
     def __str__(self):
         return f"{self.title} ({self.discount}) ~ {self.price}"
     
-    
-    class Meta:
-        db_table="new_table"
