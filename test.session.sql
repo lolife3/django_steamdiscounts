@@ -1,0 +1,1 @@
+SELECT * FROM django_admin_log;

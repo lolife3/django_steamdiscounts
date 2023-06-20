@@ -6,14 +6,14 @@ from .serializers import GroupSerializer, UserSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    query = User.objects.all().order_by("-date_joined")
-    serializer = UserSerializer
-    permission = [permissions.IsAuthenticated]
+    queryset = User.objects.all().order_by("-date_joined")
+    serializer_class = UserSerializer
+    permission_class = [permissions.IsAuthenticated]
 
 
 
 class GroupViewSet(viewsets.ModelViewSet):
-    query = Group.objects.all()
-    serializer = GroupSerializer
-    permission = [permissions.IsAuthenticated]
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    permission_class = [permissions.IsAuthenticated]
 
