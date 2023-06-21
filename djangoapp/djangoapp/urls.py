@@ -16,14 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from main.views import show_from_db
-from myapi.views import UserViewSet,GroupViewSet
+from myapi.views import UserViewSet, DiscountsViewSet
 from rest_framework import routers
 
 
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet, basename="users")
-router.register(r'groups', GroupViewSet, basename="groups")
+router.register(r'discounts', DiscountsViewSet, basename="discounts")
 
 
 
