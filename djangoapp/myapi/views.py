@@ -1,9 +1,9 @@
 from django.contrib.auth.models import User
+from .serializers import  UserSerializer, DiscountsSerializer
+from main.models import Discounts
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import  UserSerializer, DiscountsSerializer
-from main.models import Discounts
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by("-date_joined")

@@ -1,1 +1,0 @@
-RENAME TABLE `new_table` TO `main_discounts`;
