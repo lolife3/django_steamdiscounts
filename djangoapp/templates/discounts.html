@@ -1,10 +1,13 @@
 <table>
-    <form action="search" method="post">
-        {% csrf_token %}
+    {%block content%}
+    {% csrf_token %}
+    <form action="discounts" method="post">
         {{form.as_p}}   
         <input type="submit" value="Submit">
     </form>
-    <form action="" method="get"><input type="submit" value="Show ALL"></form>
+    {%endblock content%}
+
+    <form method="get"><input type="submit" value="Show ALL"></form>
 
 
     <tr>

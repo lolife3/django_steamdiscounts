@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Discounts
+from .models import Discount
 
 
-admin.site.register(Discounts)
+admin.site.register(Discount)

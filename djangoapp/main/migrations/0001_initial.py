@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Discounts",
+            name="Discount",
             fields=[
                 (
                     "id",
@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ("price", models.CharField(max_length=20, verbose_name="Price")),
             ],
             options={
-                "db_table": "discount_django",
+                "db_table": "main_discounts",
             },
         ),
     ]

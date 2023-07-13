@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
-from .serializers import  UserSerializer, DiscountsSerializer
-from main.models import Discounts
+from .serializers import  UserSerializer, DiscountSerializer
+from main.models import Discount
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -12,21 +12,21 @@ class UserViewSet(viewsets.ModelViewSet):
     
 
 
-class DiscountsViewSet(viewsets.ModelViewSet):
-    queryset = Discounts.objects.all()
-    serializer_class = DiscountsSerializer
+class DiscountViewSet(viewsets.ModelViewSet):
+    queryset = Discount.objects.all()
+    serializer_class = DiscountSerializer
     permission_class = [permissions.IsAuthenticated]
 
 
 
-class _DiscountsViewSet(APIView):
+class _DiscountViewSet(APIView):
     def get(self, request, format=None):
-        queryset = Discounts.objects.all()
-        serializer = DiscountsSerializer(queryset, many=True)
+        queryset = Discount.objects.all()
+        serializer = DiscountSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        serializer = DiscountsSerializer(data=request.data)
+        serializer = DiscountSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

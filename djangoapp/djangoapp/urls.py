@@ -15,24 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from main.views import show_from_db
-from myapi.views import UserViewSet, DiscountsViewSet
+from main.views import search_discount, register_user
+from myapi.views import UserViewSet, DiscountViewSet
 from rest_framework import routers
 
 
 
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet, basename="users")
-router.register(r'discounts', DiscountsViewSet, basename="discounts")
+router.register(r'users', UserViewSet, basename="user")
+router.register(r'discounts', DiscountViewSet, basename="discount")
 
 
 
 
 
 urlpatterns = [
+    path("register", register_user, name="register"),
     path("admin", admin.site.urls),
-    path("discounts", show_from_db, name='discounts'),
-    path("discounts/search", show_from_db, name="search"),
+    path("discounts", search_discount, name='discounts'),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

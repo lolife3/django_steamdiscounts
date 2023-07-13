@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Discounts(models.Model):
+class Discount(models.Model):
     title = models.CharField("Title", max_length=100)
     discount = models.CharField("Discount",max_length=20)
     price = models.CharField("Price", max_length=20)

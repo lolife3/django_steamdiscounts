@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from main.models import Discounts
+from main.models import Discount
 from rest_framework import serializers
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -8,7 +8,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ("__all__")
         
 
-class DiscountsSerializer(serializers.HyperlinkedModelSerializer):
+class DiscountSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Discounts 
+        model = Discount
         fields = ("__all__")
