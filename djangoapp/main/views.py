@@ -2,34 +2,41 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from .models import Discount
 from .forms import SearchForm, UserForm
 from django.views.decorators.csrf import csrf_exempt
 
 
-@csrf_exempt
-def search_discount(request):
+
+def search_discount(request): 
+    context = {
+            "form": SearchForm(),
+            "data": None
+        }
     if request.method == "POST":
         form = SearchForm(request.POST)
         if form.is_valid():
-            return render(request, "discounts.html", {"data": Discount.objects.filter(title__icontains=request.POST["searched_titles"]),
-                                                      "form": form})
- 
+            context["data"] = Discount.objects.filter(title__icontains=request.POST["searched_titles"])
+            return render(request, "discounts.html", context)
     else:
-        return render(request, "discounts.html", {"data": Discount.objects.all(),
-                                              "form": SearchForm()})
-    
+        context["data"] = Discount.objects.all()
+        return render(request, "discounts.html", context)    
+
 
 
 def register_user(request):   
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return render(request, "login.html", {"form": form})
+            user = User(username=request.POST["username"], password=request.POST["password1"])
+            user.save()
+            return render(request, "login.html", {"form": form,
+                                                  "message": "User created succesfully!",})
         else:
-            return(form.errors)
-    else:  
+            print(f"\n{form.errors.as_text()}\n")
+
+    else:
         return render(request, "login.html", {"form": UserCreationForm()})
 
 
