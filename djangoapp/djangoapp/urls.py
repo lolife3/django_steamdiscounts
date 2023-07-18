@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from main.views import search_discount, register_user
+from main import views
 from myapi.views import UserViewSet, DiscountViewSet
 from rest_framework import routers
 
@@ -30,9 +30,11 @@ router.register(r'discounts', DiscountViewSet, basename="discount")
 
 
 urlpatterns = [
-    path("register", register_user, name="register"),
+    path("", views.home_page, name="home"),
+    path("login", views.login_user, name="login"),
+    path("register", views.register_user, name="register"),
     path("admin", admin.site.urls),
-    path("discounts", search_discount, name='discounts'),
+    path("discounts", views.search_discount, name='discounts'),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
