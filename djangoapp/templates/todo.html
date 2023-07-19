@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>ToDo List</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}   
+    <input type="submit" value="Submit">
+</form>
+
+<table>
+    {% for record in data %}
+    <tr>
+        <td>{{record.text}}</td>
+        <td>{{record.creation_date}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

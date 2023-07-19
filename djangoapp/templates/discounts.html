@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+
+{% block content %}
 <table>
     <form action="discounts" method="post">
         {% csrf_token %}
@@ -21,7 +25,7 @@
     
     {% for record in data%}
     <tr>
-        <td>{{record.id}}</td>
+        <td>{{record.id}}. &nbsp</td>
         <td>{{record.title}}</td>
         <td>{{record.discount}}</td>
         <td>{{record.price}}</td>
@@ -30,3 +34,4 @@
     {% endfor %}
     
 </table>
+{% endblock %}

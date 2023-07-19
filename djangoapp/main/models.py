@@ -9,3 +9,8 @@ class Discount(models.Model):
     def __str__(self):
         return f"{self.title} ({self.discount}) ~ {self.price}"
     
+    
+
+class ToDo(models.Model):
+    text = models.CharField("TODOs", max_length=500)
+    creation_date = models.DateTimeField("Creation date", auto_now_add=True)

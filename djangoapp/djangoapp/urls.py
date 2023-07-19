@@ -33,8 +33,10 @@ urlpatterns = [
     path("", views.home_page, name="home"),
     path("login", views.login_user, name="login"),
     path("register", views.register_user, name="register"),
+    path("logout", views.logout_user, name="logout"),
     path("admin", admin.site.urls),
     path("discounts", views.search_discount, name='discounts'),
+    path("todo", views.todo, name="todo"),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

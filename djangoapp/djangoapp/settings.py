@@ -26,7 +26,7 @@ MEDIA_URL = "/media/"
 SECRET_KEY = "django-insecure-5@9fk47^(+-e$41&mv31rpag1(^!bkk-4-a=2eerrw8h(irr)z"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1"]
 
@@ -44,11 +44,12 @@ INSTALLED_APPS = [
     "myapi",
     "rest_framework",
     "crispy_forms",
-    "crispy_bootstrap4",
+    "crispy_bootstrap5",
+    "bootstrap5"
 ]
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 
 MIDDLEWARE = [
@@ -132,6 +133,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

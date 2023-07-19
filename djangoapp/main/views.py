@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.template import loader
-from django.contrib.auth import authenticate, login
+from django.urls import reverse
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Discount
-from .forms import SearchForm, UserLoginForm
+from .models import Discount, ToDo
+from .forms import SearchForm, UserLoginForm, ToDoForm
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -31,17 +31,18 @@ def search_discount(request):
 
 
 def register_user(request):   
-    context = {"form": UserCreationForm(),
-                "message": ""}
+    context = {"form": UserCreationForm(),}
     
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = User(username=request.POST["username"], password=request.POST["password1"])
+            user = form.save(commit=False)
+            user.username = user.username.lower()
             user.save()
-            return render(request, "login.html", {"message": "User created succesfully!",})
+            messages.success(request, "User created succesfully!")
+            return  redirect("login")
         else:
-            context["message"] = f"\n{form.errors.as_text()}\n"
+            messages.warning(request, f"{form.errors}")
             return render(request, "register.html", context)
             
     else:
@@ -50,21 +51,44 @@ def register_user(request):
     
     
 def login_user(request):
-    context = {"form": UserLoginForm(),
-               "message": ""}
+    context = {"form": UserLoginForm(),}
     
     if request.method == "POST":
-        user = authenticate(username=request.POST["username"], password=request.POST["password"])
+        user = authenticate(request, username=request.POST["username"], password=request.POST["password"])
         if user is not None:
             login(request, user)
-            context["message"] = f"Welcome, {request.POST['username']}"
-            return render(request, "base.html", context)
+            messages.success(request, f"Logged in succesfully! Welcome, {request.POST['username']}")
+            return render(request, "login.html", context)
         else:
-            context["message"] = "Invalid username or password"
+            messages.warning(request, "Invalid username or password")
             return render(request, "login.html", context)
 
     else:
         return render(request, "login.html", context)
+    
+    
+    
+def logout_user(request):
+    logout(request)
+    messages.success(request, "Logged out succesfully!")
+    return redirect("login")
+
+
+
+def todo(request):
+    context = {"form": ToDoForm(),
+               "data": ToDo.objects.all()}
+    
+    if request.method == "POST":
+        form = ToDoForm(request.POST)
+        if form.is_valid():    
+            todo_object = ToDo(text=request.POST["todo_task"])
+            todo_object.save()
+            return render(request, "todo.html", context)
+    
+    
+    return render(request, "todo.html", context)
+    
 
 
 

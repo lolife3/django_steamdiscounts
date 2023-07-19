@@ -1,14 +1,15 @@
-<html>
-    <h1>Register</h1>
+{% extends "base.html" %}
 
 
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}   
-        <input type="submit" value="Register">
-    </form>
+{% block content %}
+<h1>Register</h1>
 
 
-    <p>{{message}}</p>
-        
-</html>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}   
+    <input type="submit" value="Register">
+</form>
+
+
+{%endblock%}
