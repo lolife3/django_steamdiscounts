@@ -1,13 +1,17 @@
-<html>
-    <h1>Login</h1>
-
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}   
-        <input type="submit" value="Login">
-    </form>
+{% extends "base.html" %}
 
 
-    <p>{{message}}</p>
-        
-</html>
+{% block content %}
+<h1>Login</h1>
+
+
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}   
+    <input type="submit" value="Login">
+</form>
+
+
+<p>{{message}}</p>
+{%endblock%}
+    
