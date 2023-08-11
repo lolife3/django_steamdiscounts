@@ -4,14 +4,14 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-<h1>Register</h1>
 
-
-<form method="post">
-    {% csrf_token %}
-    {{form.as_p}}   
-    <input type="submit" value="Register">
-</form>
-
+<div style="margin-left: 50px;">
+    <h1>Register</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}   
+        <input type="submit" value="Register">
+    </form>
+</div>
 
 {%endblock%}

@@ -4,36 +4,42 @@
 
 
 {% block content %}
-<table class="center">
-    <form action="discounts" method="post">
+<div style="width: 450px; margin-left: 35%;">
+    <h1 align="center">Discounts</h1>
+
+    <form align="center" action="discounts" method="post">
         {% csrf_token %}
         {{form.as_p}}   
-        <input type="submit" value="Submit">
+        <input style="width:100%;" type="submit" value="Submit">
     </form>
 
-
-    <form method="get">
-        <input type="submit" value="Show ALL">
+    <form action="discounts" method="get">
+        <input style="width:100%;" type="submit" value="Show ALL">
     </form>
-
-
-    <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Discount</th>
-        <th>Price</th>
-    </tr>
+    <p>&nbsp</p>
     
     
-    {% for record in data%}
-    <tr>
-        <td>{{record.id}}. &nbsp</td>
-        <td>{{record.title}}</td>
-        <td>{{record.discount}}</td>
-        <td>{{record.price}}</td>
-
-    </tr>
-    {% endfor %}
     
-</table>
+    <table class="width">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>(%)</th>
+            <th>Price</th>
+        </tr>
+        
+        
+        {% for record in data%}
+        <tr>
+            <td>{{record.id}}. &nbsp</td>
+            <td>{{record.title}}</td>
+            <td>{{record.discount}}</td>
+            <td>{{record.price}}</td>
+            
+        </tr>
+        {% endfor %}
+        
+    </table>    
+</div>  
+
 {% endblock %}

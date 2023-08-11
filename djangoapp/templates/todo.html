@@ -7,27 +7,30 @@
 
 
 {% block content %}
-<h1>ToDo List</h1>
+<div style="width: 450px; margin-left: 35%;">
+        
+    <h1 align="center">ToDo List</h1>
+    <form method="post" align="center">
+        {% csrf_token %}
+        {{form.as_p}}   
+        <input style="width:100%;" type="submit" value="Submit">
+    </form>
+</div>
 
-<form method="post">
-    {% csrf_token %}
-    {{form.as_p}}   
-    <input type="submit" value="Submit">
-</form>
-
-<table style="table">
-    <tr>
-        <th>Text</th>
-        <th>Creation Date</th>
-    </tr>
+    <table style="width: 1200px; margin-left: 15%">
+        <tr>
+            <th style="width: 1050px;">Text</th>
+            <th style="width: 150px;">Creation Date</th>
+        </tr>
 
 
-    {% for record in data %}
-    <tr>
-        <td>{{record.text}}</td>
-        <td>{{record.creation_date}}</td>
-    </tr>
-    {% endfor %}
-</table>
+        {% for record in data %}
+        <tr>
+            <td >{{record.text}}</td>
+            <td>{{record.creation_date}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
 
 {% endblock %}
